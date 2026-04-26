@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
+import ChatWidget from '@/components/ChatWidget';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <main className="flex-1 flex flex-col">
           {children}
         </main>
+        <ChatWidget store={{ name: 'Machi PC', info: '電腦組裝維修、零件販售，診斷費200元' }} />
       </body>
     </html>
   );
