@@ -1,8 +1,6 @@
 import { GoogleGenAI, Type } from '@google/genai';
 import { NextRequest, NextResponse } from 'next/server';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 interface StoreConfig {
   name: string;
   info: string;
@@ -97,6 +95,14 @@ const PC_RESPONSE_SCHEMA = {
 
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.error('[api/chat] GEMINI_API_KEY is not set');
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+
     const body: ChatRequest = await req.json();
     const { message, storeConfig } = body;
 
