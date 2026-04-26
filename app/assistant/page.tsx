@@ -73,6 +73,7 @@ export default function AssistantPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text }),
       });
+      if (!res.ok) throw new Error(`API error ${res.status}`);
       const { reply } = await res.json();
       const data = JSON.parse(reply || '{}');
 

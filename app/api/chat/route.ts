@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
 
     // PC advisor mode — returns JSON string parsed by the assistant page
     const response = await ai.models.generateContent({
-      model: 'gemini-3.1-pro-preview',
+      model: 'gemini-2.0-flash',
       contents: message,
       config: {
         systemInstruction: PC_ADVISOR_SYSTEM_PROMPT,
